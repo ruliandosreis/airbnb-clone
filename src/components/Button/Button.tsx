@@ -8,7 +8,7 @@ interface ButtonProps
 }
 
 const buttonVariants = cva(
-  "cursor-pointer inline-flex items-center justify-center rounded-lg text-sm font-medium transition-color focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 disabled:opacity-50 !font-bold",
+  "w-full cursor-pointer inline-flex items-center justify-center rounded-lg text-sm font-medium transition-color focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 disabled:opacity-50 !font-bold",
   {
     variants: {
       variant: {

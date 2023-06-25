@@ -9,6 +9,8 @@ import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Modal from "@/components/Modal/Modal";
+import Heading from "@/components/Heading/Heading";
+import Input from "@/components/Input/Input";
 
 interface FormValues {
   phoneNumber: string;
@@ -52,7 +54,18 @@ const LoginModal: React.FC = () => {
       isOpen={loginModal.isOpen}
       onClose={loginModal.onClose}
     >
-      <>oi</>
+      <div className="flex flex-col gap-2">
+        <Heading title={"Bem vindo ao Airbnb"} hierarquy="h3" />
+        <Input
+          id="email"
+          label="E-mail"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Button variant="primary">Continuar</Button>
+      </div>
     </Modal>
   );
 };
