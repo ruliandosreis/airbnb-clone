@@ -4,6 +4,7 @@ import Container from "../Container/Container";
 import Logo from "./Logo/Logo";
 import Search from "./Search/Search";
 import UserMenu from "./UserMenu/UserMenu";
+import LoginModal from "./LoginModal/LoginModal";
 
 interface HeaderProps {}
 
@@ -19,6 +20,7 @@ const Header: FC<HeaderProps> = ({}) => {
           </div>
         </Container>
       </div>
+      <LoginModal />
     </div>
   );
 };

@@ -1,23 +1,59 @@
+"use client";
 import Button from "@/components/Button/Button";
-import React from "react";
+import React, { useState, useCallback } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-const LoginModal = () => {
+import useLoginModal from "@/hooks/useLoginModal";
+
+import { AiFillGithub } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+import Modal from "@/components/Modal/Modal";
+
+interface FormValues {
+  phoneNumber: string;
+}
+
+const LoginModal: React.FC = () => {
+  const loginModal = useLoginModal();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+    axios
+      .post("api/login", data)
+      .then(() => {
+        loginModal.onClose();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <h3 className="text-2xl font-bold">Bem vindo ao Airbnb</h3>
-      <Button variant="primary">Continuar</Button>
-      <span className="">
-        Ligaremos ou enviaremos uma mensagem para confirmar seu número. Podem
-        ser aplicadas tarifas padrão de dados e mensagens.
-        <a
-          className="font-bold underline ml-[0.5ch]"
-          href="https://www.airbnb.com.br/help/article/2855"
-        >
-          Política de privacidade
-        </a>
-      </span>
-      <Button variant="ghost">Sair</Button>
-    </div>
+    <Modal
+      title="Entre ou cadastre-se"
+      disabled={isLoading}
+      isOpen={loginModal.isOpen}
+      onClose={loginModal.onClose}
+    >
+      <>oi</>
+    </Modal>
   );
 };
 
