@@ -43,7 +43,11 @@ const Modal: FC<ModalProps> = ({
         >
           <div className="w-full border-b-[1px] flex items-center p-6">
             <button onClick={handleClose} className="absolute">
-              <IoCloseOutline size={"1.75rem"} title="Close Modal" />
+              <IoCloseOutline
+                size={"1.75rem"}
+                title="Close Modal"
+                tabIndex={0}
+              />
             </button>
             <h2 className="w-full text-center font-bold text-ellipsis overflow-hidden whitespace-nowrap">
               {title}

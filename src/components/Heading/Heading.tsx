@@ -53,7 +53,6 @@ const Heading: FC<HeadingProps> = ({ title, subtitle, center, hierarquy }) => {
         );
     }
   };
-  console.log(returnHeading(hierarquy ? hierarquy : "h1"));
   return (
     <div className="flex flex-col gap-2">
       {returnHeading(hierarquy ? hierarquy : "h1")}

@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import Header from "@/components/Header/Header";
+import ToasterProvider from "@/providers/ToasterProvider";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
+        <ToasterProvider />
         <Header />
         {children}
       </body>

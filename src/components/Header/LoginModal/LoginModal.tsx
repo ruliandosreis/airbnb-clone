@@ -11,10 +11,7 @@ import axios from "axios";
 import Modal from "@/components/Modal/Modal";
 import Heading from "@/components/Heading/Heading";
 import Input from "@/components/Input/Input";
-
-interface FormValues {
-  phoneNumber: string;
-}
+import { toast } from "react-hot-toast";
 
 const LoginModal: React.FC = () => {
   const loginModal = useLoginModal();
@@ -37,10 +34,13 @@ const LoginModal: React.FC = () => {
     axios
       .post("api/login", data)
       .then(() => {
+        console.log("enviou");
         loginModal.onClose();
       })
       .catch((error) => {
-        console.log(error);
+        if (axios.isAxiosError(error)) {
+          toast.error("Algo deu errado, tente novamente.");
+        }
       })
       .finally(() => {
         setIsLoading(false);
@@ -54,17 +54,76 @@ const LoginModal: React.FC = () => {
       isOpen={loginModal.isOpen}
       onClose={loginModal.onClose}
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         <Heading title={"Bem vindo ao Airbnb"} hierarquy="h3" />
-        <Input
-          id="email"
-          label="E-mail"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <Button variant="primary">Continuar</Button>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          onSubmitCapture={(e) => e.preventDefault()}
+        >
+          <div className="flex flex-col gap-4">
+            <Input
+              id="email"
+              type="email"
+              inputMode="email"
+              label="E-mail"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+            <Input
+              id="name"
+              label="Nome completo"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+            <Input
+              id="password"
+              type="password"
+              label="Senha"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+            <Button type="submit" variant="primary">
+              Continuar
+            </Button>
+          </div>
+        </form>
+        <div className="flex">
+          <hr className="w-3/6 h-[2px] bg-zinc-300 relative top-[12px]" />
+          <span className="text-neutral-500 mx-4">ou</span>
+          <hr className="w-3/6 h-[2px] bg-zinc-300 relative top-[12px]" />
+        </div>
+        <Button
+          variant="ghost"
+          icon={FcGoogle}
+          className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600 focus:border-zinc-300 focus:ring-zinc-300"
+        >
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600">
+            Continuar com Google
+          </span>
+        </Button>
+        <Button
+          variant="ghost"
+          icon={AiFillGithub}
+          className="text-black focus:border-zinc-300 focus:ring-zinc-300"
+        >
+          Continuar com Github
+        </Button>
+        <p className="text-neutral-500 text-center">
+          Já possui uma conta?{" "}
+          <a
+            className="font-bold text-neutral-800 cursor-pointer focus:border-zinc-300 focus:ring-zinc-300"
+            onClick={loginModal.onClose}
+            tabIndex={0}
+          >
+            Entre aqui!
+          </a>
+        </p>
       </div>
     </Modal>
   );
