@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+"use client";
+import React, { FC, useState } from "react";
 import Container from "../Container/Container";
 import Logo from "./Logo/Logo";
 import Search from "./Search/Search";
