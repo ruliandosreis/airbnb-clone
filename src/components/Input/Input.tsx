@@ -16,9 +16,9 @@ const Input: FC<InputProps> = ({
   formatPrice,
   register,
   errors,
-  type = "text",
   disabled,
   required,
+  ...props
 }) => {
   return (
     <div className="w-full relative">
@@ -32,6 +32,7 @@ const Input: FC<InputProps> = ({
         } ${errors[id] ? "border-rose-500" : "border-neutral-300"} ${
           errors[id] ? "focus:border-rose-500" : "focus:border-black"
         }`}
+        {...props}
       />
       <label
         className={`absolute text-md duration-150 transform -translate-y-3 top-5 z-10 origin-[0] 

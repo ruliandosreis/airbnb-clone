@@ -101,7 +101,7 @@ const LoginModal: React.FC = () => {
         <Button
           variant="ghost"
           icon={FcGoogle}
-          className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600 focus:border-zinc-300 focus:ring-zinc-300"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600 focus:border-zinc-500 focus:ring-zinc-500"
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600">
             Continuar com Google
@@ -110,14 +110,14 @@ const LoginModal: React.FC = () => {
         <Button
           variant="ghost"
           icon={AiFillGithub}
-          className="text-black focus:border-zinc-300 focus:ring-zinc-300"
+          className="text-black focus:border-zinc-500 focus:ring-zinc-500"
         >
           Continuar com Github
         </Button>
         <p className="text-neutral-500 text-center">
           Já possui uma conta?{" "}
           <a
-            className="font-bold text-neutral-800 cursor-pointer focus:border-zinc-300 focus:ring-zinc-300"
+            className="font-bold text-neutral-800 cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-zinc-600"
             onClick={loginModal.onClose}
             tabIndex={0}
           >

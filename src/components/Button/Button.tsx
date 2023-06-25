@@ -10,7 +10,7 @@ interface ButtonProps
 }
 
 const buttonVariants = cva(
-  "w-full cursor-pointer inline-flex items-center justify-center  p-4 rounded-lg text-sm font-medium transition-color focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 disabled:opacity-50 !font-bold",
+  "w-full cursor-pointer inline-flex items-center justify-center p-4 rounded-lg text-sm font-medium transition-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 disabled:opacity-50 !font-bold",
   {
     variants: {
       variant: {
@@ -33,7 +33,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${className} ${buttonVariants({ variant })}`}
+      className={`${className && className} ${buttonVariants({ variant })}`}
       {...props}
     >
       {!!Icon && <Icon size={24} className="mr-8" />}

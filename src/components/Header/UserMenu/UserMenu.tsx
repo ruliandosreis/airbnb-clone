@@ -14,21 +14,19 @@ const UserMenu: FC = ({}) => {
     <div className="relative">
       <div className="flex items-center gap-3">
         <a
-          // href="/host/homes"
+          href="/host/homes"
           className="hidden lg:block text-sm font-bold transition py-3 px-4 rounded full"
+          tabIndex={0}
         >
           Anuncie seu espaço no Airbnb
         </a>
-        <button className="hidden md:block">
-          <BiGlobe
-            size={"1.25rem"}
-            // onClick={toggleModal}
-            title="Language Menu"
-          />
+        <button className="hidden md:block" role="button">
+          <BiGlobe size={"1.25rem"} title="Language Menu" />
         </button>
         <button
           className="rounded-full p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-3 shadow-md"
           onClick={toggleMenu}
+          role="button"
         >
           <BiMenu size={"1.25rem"} title="User Menu" />
           <div className="hidden md:flex md:rounded-full bg-zinc-400 p-1">
@@ -47,16 +45,20 @@ const UserMenu: FC = ({}) => {
             <button
               className="text-start p-4 font-bold"
               onClick={loginModal.onOpen}
+              role="button"
+              tabIndex={0}
             >
               Cadastrar-se
             </button>
             <button
               className="text-start p-4 border-b-[1px]"
               onClick={loginModal.onOpen}
+              role="button"
+              tabIndex={0}
             >
               Entrar
             </button>
-            <button className="text-start p-4">
+            <button className="text-start p-4" role="button" tabIndex={0}>
               Anuncie seu espaço no Airbnb
             </button>
             <button className="text-start p-4">Ajuda</button>

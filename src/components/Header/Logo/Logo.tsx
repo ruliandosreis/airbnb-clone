@@ -13,6 +13,7 @@ const Logo: FC = ({}) => {
       width={100}
       src={`/images/logo.png`}
       onClick={() => router.push("/")}
+      tabIndex={0}
     />
   );
 };
