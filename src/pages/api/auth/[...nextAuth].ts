@@ -36,12 +36,12 @@ export const authOptions: AuthOptions = {
           where: { email: credentials.email },
         });
 
-        if (!user || user?.hasedPassword) {
+        if (!user || user?.hashedPassword) {
           throw new Error("Credenciais inválidas");
         }
         const passwordMatch = await bcrypt.compare(
           credentials.password,
-          user.hasedPassword as string
+          user.hashedPassword as string
         );
 
         if (!passwordMatch) {
