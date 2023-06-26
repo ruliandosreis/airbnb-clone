@@ -1,13 +1,15 @@
 "use client";
-import LoginModal from "../LoginModal/LoginModal";
 import React, { FC, useState } from "react";
 import { BiGlobe, BiMenu, BiSolidUser } from "react-icons/bi";
+
 import useLoginModal from "@/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
 
 const UserMenu: FC = ({}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
   return (
@@ -44,7 +46,7 @@ const UserMenu: FC = ({}) => {
           <div className="flex flex-col">
             <button
               className="text-start p-4 font-bold"
-              onClick={loginModal.onOpen}
+              onClick={registerModal.onOpen}
               role="button"
               tabIndex={0}
             >
@@ -61,7 +63,9 @@ const UserMenu: FC = ({}) => {
             <button className="text-start p-4" role="button" tabIndex={0}>
               Anuncie seu espaço no Airbnb
             </button>
-            <button className="text-start p-4">Ajuda</button>
+            <button className="text-start p-4" role="button" tabIndex={0}>
+              Ajuda
+            </button>
           </div>
         </div>
       )}

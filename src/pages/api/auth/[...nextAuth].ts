@@ -36,8 +36,8 @@ export const authOptions: AuthOptions = {
           where: { email: credentials.email },
         });
 
-        if (!user || user?.hashedPassword) {
-          throw new Error("Credenciais inválidas");
+        if (!user || !user?.hashedPassword) {
+          throw new Error("Usuário não encontrado");
         }
         const passwordMatch = await bcrypt.compare(
           credentials.password,

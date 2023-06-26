@@ -1,10 +1,8 @@
 "use client";
 import Button from "@/components/Button/Button";
-import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import React, { useState, useCallback } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
-import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
 import { AiFillGithub } from "react-icons/ai";
@@ -14,12 +12,9 @@ import Modal from "@/components/Modal/Modal";
 import Heading from "@/components/Heading/Heading";
 import Input from "@/components/Input/Input";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
-const LoginModal: React.FC = () => {
-  const router = useRouter();
+const RegisterModal: React.FC = () => {
   const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -28,6 +23,7 @@ const LoginModal: React.FC = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -35,33 +31,31 @@ const LoginModal: React.FC = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    signIn("credentials", { ...data, redirect: false }).then((callback) => {
-      setIsLoading(false);
-      if (callback?.ok) {
-        toast.success("Boas Vindas!");
-        router.refresh();
-        loginModal.onClose();
-      }
-
-      if (callback?.error) {
-        toast.error(callback.error);
-      }
-    });
+    axios
+      .post("/api/register", data)
+      .then(() => {
+        console.log("enviou");
+        registerModal.onClose();
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          toast.error("Algo deu errado, tente novamente.");
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
     <Modal
-      title="Faça seu login!"
+      title="Entre ou cadastre-se"
       disabled={isLoading}
-      isOpen={loginModal.isOpen}
-      onClose={loginModal.onClose}
+      isOpen={registerModal.isOpen}
+      onClose={registerModal.onClose}
     >
       <div className="flex flex-col gap-4">
-        <Heading
-          title={"Que bom te ver de novo!"}
-          hierarquy="h3"
-          subtitle="Entre na sua conta informando suas credenciais nos campos abaixo."
-        />
+        <Heading title={"Bem vindo ao Airbnb"} hierarquy="h3" />
         <form
           onSubmit={handleSubmit(onSubmit)}
           onSubmitCapture={(e) => e.preventDefault()}
@@ -78,6 +72,14 @@ const LoginModal: React.FC = () => {
               required
             />
             <Input
+              id="name"
+              label="Nome completo"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+            <Input
               id="password"
               type="password"
               label="Senha"
@@ -87,7 +89,7 @@ const LoginModal: React.FC = () => {
               required
             />
             <Button type="submit" variant="primary">
-              Entrar
+              Continuar
             </Button>
           </div>
         </form>
@@ -112,9 +114,19 @@ const LoginModal: React.FC = () => {
         >
           Continuar com Github
         </Button>
+        <p className="text-neutral-500 text-center">
+          Já possui uma conta?{" "}
+          <a
+            className="font-bold text-neutral-800 cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-zinc-600"
+            onClick={registerModal.onClose}
+            tabIndex={0}
+          >
+            Entre aqui!
+          </a>
+        </p>
       </div>
     </Modal>
   );
 };
 
-export default LoginModal;
+export default RegisterModal;
