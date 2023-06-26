@@ -34,7 +34,6 @@ const RegisterModal: React.FC = () => {
     axios
       .post("/api/register", data)
       .then(() => {
-        console.log("enviou");
         registerModal.onClose();
       })
       .catch((error) => {

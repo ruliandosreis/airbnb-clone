@@ -4,8 +4,15 @@ import { BiGlobe, BiMenu, BiSolidUser } from "react-icons/bi";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { User } from "@prisma/client";
 
-const UserMenu: FC = ({}) => {
+import { signOut } from "next-auth/react";
+
+interface UserMenuProps {
+  currentUser?: User | null;
+}
+
+const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -43,30 +50,67 @@ const UserMenu: FC = ({}) => {
       </div>
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[50vw] md:w-[35vw] bg-white overflow-hidden right-0 top-14 md:top-16 text-sm">
-          <div className="flex flex-col">
-            <button
-              className="text-start p-4 font-bold"
-              onClick={registerModal.onOpen}
-              role="button"
-              tabIndex={0}
-            >
-              Cadastrar-se
-            </button>
-            <button
-              className="text-start p-4 border-b-[1px]"
-              onClick={loginModal.onOpen}
-              role="button"
-              tabIndex={0}
-            >
-              Entrar
-            </button>
-            <button className="text-start p-4" role="button" tabIndex={0}>
-              Anuncie seu espaço no Airbnb
-            </button>
-            <button className="text-start p-4" role="button" tabIndex={0}>
-              Ajuda
-            </button>
-          </div>
+          {currentUser ? (
+            <div className="flex flex-col">
+              <button
+                className="text-start p-4 font-bold"
+                onClick={() => console.log("Minhas Viagens")}
+                role="button"
+                tabIndex={0}
+              >
+                Minhas Viagens
+              </button>
+              <button
+                className="text-start p-4 font-bold"
+                onClick={() => console.log("Reservas")}
+                role="button"
+                tabIndex={0}
+              >
+                Reservas
+              </button>
+              <button
+                className="text-start p-4 font-bold"
+                onClick={() => console.log("Favoritos")}
+                role="button"
+                tabIndex={0}
+              >
+                Favoritos
+              </button>
+              <button
+                className="text-start p-4 font-bold text-rose-600 border-t-[1px]"
+                onClick={() => signOut()}
+                role="button"
+                tabIndex={0}
+              >
+                Encerrar Sessão
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-col">
+              <button
+                className="text-start p-4 font-bold"
+                onClick={registerModal.onOpen}
+                role="button"
+                tabIndex={0}
+              >
+                Cadastrar-se
+              </button>
+              <button
+                className="text-start p-4 border-b-[1px]"
+                onClick={loginModal.onOpen}
+                role="button"
+                tabIndex={0}
+              >
+                Entrar
+              </button>
+              <button className="text-start p-4" role="button" tabIndex={0}>
+                Anuncie seu espaço no Airbnb
+              </button>
+              <button className="text-start p-4" role="button" tabIndex={0}>
+                Ajuda
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

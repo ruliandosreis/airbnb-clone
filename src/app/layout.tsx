@@ -2,6 +2,7 @@ import "./globals.css";
 import { Nunito } from "next/font/google";
 import Header from "@/components/Header/Header";
 import ToasterProvider from "@/providers/ToasterProvider";
+import getCurrentUser from "./actions/getCurrentUser";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -11,16 +12,18 @@ export const metadata = {
     "Encontre o lugar perfeito a um preço incrível em 191 países. O mundo é a sua casa com o Airbnb Clone.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <body className={nunito.className}>
         <ToasterProvider />
-        <Header />
+        <Header currentUser={currentUser} />
         {children}
       </body>
     </html>

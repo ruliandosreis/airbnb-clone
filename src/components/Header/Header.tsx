@@ -7,9 +7,13 @@ import UserMenu from "./UserMenu/UserMenu";
 import RegisterModal from "./RegisterModal/RegisterModal";
 import LoginModal from "./LoginModal/LoginModal";
 
-interface HeaderProps {}
+import { User } from "@prisma/client";
 
-const Header: FC<HeaderProps> = ({}) => {
+interface HeaderProps {
+  currentUser?: User | null;
+}
+
+const Header: FC<HeaderProps> = ({ currentUser }) => {
   return (
     <header className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -17,7 +21,7 @@ const Header: FC<HeaderProps> = ({}) => {
           <nav className="flex flex-row items-center justify-between gap-3 md:gap-4">
             <Logo />
             <Search />
-            <UserMenu />
+            <UserMenu currentUser={currentUser} />
           </nav>
         </Container>
       </div>
