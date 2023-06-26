@@ -34,10 +34,10 @@ const Modal: FC<ModalProps> = ({
     isOpen && (
       <div
         id="modal-container"
-        className="fixed z-40 top-0 left-0 w-screen h-screen flex justify-center items-center bg-neutral-800/70"
+        className="fixed z-30 top-0 left-0 w-screen h-screen flex justify-center items-center bg-neutral-800/70"
       >
         <div
-          className={`z-50 w-full md:w-4/6 lg:w-4/6 xl:w-3/5 h-full md:h-auto bg-white md:rounded-xl shadow-md translate duration-300 transition-all
+          className={`z-40 w-full md:w-4/6 lg:w-4/6 xl:w-3/5 h-full md:h-auto bg-white md:rounded-xl shadow-md translate duration-300 transition-all
         ${showHideModal ? "translate-y-0" : "translate-y-full"}
         ${showHideModal ? "opacity-100" : "opacity-0"}`}
         >
@@ -49,9 +49,7 @@ const Modal: FC<ModalProps> = ({
               {title}
             </h2>
           </div>
-          <div className="p-6 w-full h-full md:max-h-[70vh] overflow-scroll overflow-x-hidden">
-            {children}
-          </div>
+          <div className="p-6 w-full h-full md:max-h-fit">{children}</div>
         </div>
       </div>
     )

@@ -7,6 +7,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Heading from "../Heading/Heading";
 import { Category, categories } from "../Header/Categories/Categories";
 import CategoryInput from "./CategoryInput";
+import CountrySelect from "./CountrySelect";
 
 enum STEPS {
   CATEGORY = 0,
@@ -41,7 +42,9 @@ const RentModal: FC = ({}) => {
       description: "",
     },
   });
+
   const category = watch("category");
+  const location = watch("location");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -81,34 +84,45 @@ const RentModal: FC = ({}) => {
     return "Voltar";
   }, [step]);
 
-  function handleBodyContent(currentStep: STEPS) {
-    switch (currentStep) {
-      case 0:
-        return (
-          <div className="flex flex-col gap-8">
-            <Heading
-              title="Qual destes descreve melhor o seu espaço?"
-              subtitle="Escolha uma categoria"
-              hierarquy="h3"
+  let bodyContent = (
+    <div className="flex flex-col gap-8">
+      <Heading
+        title="Qual destes descreve melhor o seu espaço?"
+        subtitle="Escolha uma categoria"
+        hierarquy="h2"
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
+        {categories.map((item: Category, index: number) => (
+          <div key={`${index}-${item.value}`} className="col-span-1">
+            <CategoryInput
+              onClick={(category: string) =>
+                setCustomValue("category", category)
+              }
+              value={item.value}
+              icon={item.icon}
+              label={item.label}
+              selected={category === item.value}
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
-              {categories.map((item: Category, index: number) => (
-                <div key={`${index}-${item.value}`} className="col-span-1">
-                  <CategoryInput
-                    onClick={(category: string) =>
-                      setCustomValue("category", category)
-                    }
-                    value={item.value}
-                    icon={item.icon}
-                    label={item.label}
-                    selected={category === item.value}
-                  />
-                </div>
-              ))}
-            </div>
           </div>
-        );
-    }
+        ))}
+      </div>
+    </div>
+  );
+
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8 z-50 overflow-visible">
+        <Heading
+          title="Onde seu espaço está localizado?"
+          hierarquy="h2"
+          subtitle="Ajudaremos os hóspedes a encontrarem seu espaço"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(location) => setCustomValue("location", location)}
+        />
+      </div>
+    );
   }
 
   return (
@@ -117,7 +131,7 @@ const RentModal: FC = ({}) => {
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
     >
-      {handleBodyContent(step)}
+      {bodyContent}
       <div className="flex gap-4 mt-8">
         <Button variant="ghost" onClick={onBack}>
           {handleSecondaryButtonLabel}
