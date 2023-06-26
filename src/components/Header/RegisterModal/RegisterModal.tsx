@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/Button/Button";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import useRegisterModal from "@/hooks/useRegisterModal";
@@ -14,6 +14,7 @@ import Input from "@/components/Input/Input";
 import { toast } from "react-hot-toast";
 
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/hooks/useLoginModal";
 
 const RegisterModal: React.FC = () => {
   const registerModal = useRegisterModal();
@@ -31,6 +32,8 @@ const RegisterModal: React.FC = () => {
     },
   });
 
+  const loginModal = useLoginModal();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     axios
@@ -47,6 +50,11 @@ const RegisterModal: React.FC = () => {
         setIsLoading(false);
       });
   };
+
+  const toggleModal = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   return (
     <Modal
@@ -121,7 +129,7 @@ const RegisterModal: React.FC = () => {
           Já possui uma conta?{" "}
           <a
             className="font-bold text-neutral-800 cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-zinc-600"
-            onClick={registerModal.onClose}
+            onClick={toggleModal}
             tabIndex={0}
           >
             Entre aqui!

@@ -6,6 +6,7 @@ import Search from "./Search/Search";
 import UserMenu from "./UserMenu/UserMenu";
 import RegisterModal from "./RegisterModal/RegisterModal";
 import LoginModal from "./LoginModal/LoginModal";
+import Categories from "./Categories/Categories";
 
 import { SafeUser } from "@/app/types";
 
@@ -25,6 +26,7 @@ const Header: FC<HeaderProps> = ({ currentUser }) => {
           </nav>
         </Container>
       </div>
+      <Categories />
       <RegisterModal />
       <LoginModal />
     </header>

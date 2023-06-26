@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/components/Button/Button";
@@ -48,6 +48,11 @@ const LoginModal: React.FC = () => {
       }
     });
   };
+
+  const toggleModal = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   return (
     <Modal
@@ -114,6 +119,16 @@ const LoginModal: React.FC = () => {
         >
           Continuar com Github
         </Button>
+        <p className="text-neutral-500 text-center mt-4">
+          Primeira vez aqui?{" "}
+          <a
+            className="font-bold text-neutral-800 cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-zinc-600"
+            onClick={toggleModal}
+            tabIndex={0}
+          >
+            Crie sua conta!
+          </a>
+        </p>
       </div>
     </Modal>
   );

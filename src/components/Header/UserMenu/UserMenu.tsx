@@ -49,7 +49,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           {currentUser ? (
             <div className="flex flex-col">
               <button
-                className="text-start p-4 font-bold text-zinc-800"
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
                 onClick={() => console.log("Minhas Viagens")}
                 role="button"
                 tabIndex={0}
@@ -57,7 +57,15 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Minhas Viagens
               </button>
               <button
-                className="text-start p-4 font-bold text-zinc-800"
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
+                onClick={() => console.log("Meu espaço")}
+                role="button"
+                tabIndex={0}
+              >
+                Meu espaço
+              </button>
+              <button
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
                 onClick={() => console.log("Reservas")}
                 role="button"
                 tabIndex={0}
@@ -65,7 +73,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Reservas
               </button>
               <button
-                className="text-start p-4 font-bold text-zinc-800"
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
                 onClick={() => console.log("Favoritos")}
                 role="button"
                 tabIndex={0}
@@ -73,7 +81,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Favoritos
               </button>
               <button
-                className="text-start p-4 font-bold text-rose-600 border-t-[1px]"
+                className="text-start p-4 font-bold text-rose-600 border-t-[1px] hover:bg-rose-100"
                 onClick={() => signOut()}
                 role="button"
                 tabIndex={0}
@@ -84,7 +92,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           ) : (
             <div className="flex flex-col">
               <button
-                className="text-start p-4 font-bold text-zinc-800"
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
                 onClick={registerModal.onOpen}
                 role="button"
                 tabIndex={0}
@@ -92,7 +100,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Cadastrar-se
               </button>
               <button
-                className="text-start p-4 border-b-[1px] text-zinc-800"
+                className="text-start p-4 border-b-[1px] text-zinc-800 hover:bg-zinc-100"
                 onClick={loginModal.onOpen}
                 role="button"
                 tabIndex={0}
@@ -100,14 +108,14 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Entrar
               </button>
               <button
-                className="text-start p-4 text-zinc-800"
+                className="text-start p-4 text-zinc-800 hover:bg-zinc-100"
                 role="button"
                 tabIndex={0}
               >
                 Anuncie seu espaço no Airbnb
               </button>
               <button
-                className="text-start p-4 text-zinc-800"
+                className="text-start p-4 text-zinc-800 hover:bg-zinc-100"
                 role="button"
                 tabIndex={0}
               >
