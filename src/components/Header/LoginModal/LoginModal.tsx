@@ -1,18 +1,18 @@
 "use client";
-import Button from "@/components/Button/Button";
 import React, { useState } from "react";
-import { signIn } from "next-auth/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+
+import Button from "@/components/Button/Button";
+import Modal from "@/components/Modal/Modal";
+import Heading from "@/components/Heading/Heading";
+import Input from "@/components/Input/Input";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
-import Modal from "@/components/Modal/Modal";
-import Heading from "@/components/Heading/Heading";
-import Input from "@/components/Input/Input";
+import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -109,6 +109,7 @@ const LoginModal: React.FC = () => {
           variant="ghost"
           icon={AiFillGithub}
           className="text-zinc-800 focus:border-zinc-500 focus:ring-zinc-500"
+          onClick={() => signIn("github")}
         >
           Continuar com Github
         </Button>

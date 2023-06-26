@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/Button/Button";
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import useRegisterModal from "@/hooks/useRegisterModal";
@@ -12,6 +12,8 @@ import Modal from "@/components/Modal/Modal";
 import Heading from "@/components/Heading/Heading";
 import Input from "@/components/Input/Input";
 import { toast } from "react-hot-toast";
+
+import { signIn } from "next-auth/react";
 
 const RegisterModal: React.FC = () => {
   const registerModal = useRegisterModal();
@@ -110,10 +112,11 @@ const RegisterModal: React.FC = () => {
           variant="ghost"
           icon={AiFillGithub}
           className="text-zinc-800 focus:border-zinc-500 focus:ring-zinc-500"
+          onClick={() => signIn("github")}
         >
           Continuar com Github
         </Button>
-        <p className="text-neutral-500 text-center">
+        <p className="text-neutral-500 text-center mt-4">
           Já possui uma conta?{" "}
           <a
             className="font-bold text-neutral-800 cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-zinc-600"

@@ -1,20 +1,23 @@
 "use client";
 import React, { FC, useState } from "react";
+
 import { BiGlobe, BiMenu, BiSolidUser } from "react-icons/bi";
+import Image from "next/image";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
+import Avatar from "./Avatar/Avatar";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
 const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const toggleMenu: () => void = () => setIsOpen(!isOpen);
 
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
@@ -24,7 +27,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
       <div className="flex items-center gap-3">
         <a
           href="/host/homes"
-          className="hidden lg:block text-sm font-bold transition py-3 px-4 rounded full"
+          className="hidden lg:block text-sm text-zinc-800 font-bold transition py-3 px-4 rounded full"
           tabIndex={0}
         >
           Anuncie seu espaço no Airbnb
@@ -38,14 +41,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           role="button"
         >
           <BiMenu size={"1.25rem"} title="User Menu" />
-          <div className="hidden md:flex md:rounded-full bg-zinc-400 p-1">
-            <BiSolidUser
-              size={"1.25rem"}
-              color="white"
-              className="relative border-[1px] border-zinc-400 rounded-full"
-              title="User Menu"
-            />
-          </div>
+          <Avatar src={currentUser?.image} />
         </button>
       </div>
       {isOpen && (
@@ -53,7 +49,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           {currentUser ? (
             <div className="flex flex-col">
               <button
-                className="text-start p-4 font-bold"
+                className="text-start p-4 font-bold text-zinc-800"
                 onClick={() => console.log("Minhas Viagens")}
                 role="button"
                 tabIndex={0}
@@ -61,7 +57,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Minhas Viagens
               </button>
               <button
-                className="text-start p-4 font-bold"
+                className="text-start p-4 font-bold text-zinc-800"
                 onClick={() => console.log("Reservas")}
                 role="button"
                 tabIndex={0}
@@ -69,7 +65,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Reservas
               </button>
               <button
-                className="text-start p-4 font-bold"
+                className="text-start p-4 font-bold text-zinc-800"
                 onClick={() => console.log("Favoritos")}
                 role="button"
                 tabIndex={0}
@@ -88,7 +84,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           ) : (
             <div className="flex flex-col">
               <button
-                className="text-start p-4 font-bold"
+                className="text-start p-4 font-bold text-zinc-800"
                 onClick={registerModal.onOpen}
                 role="button"
                 tabIndex={0}
@@ -96,17 +92,25 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Cadastrar-se
               </button>
               <button
-                className="text-start p-4 border-b-[1px]"
+                className="text-start p-4 border-b-[1px] text-zinc-800"
                 onClick={loginModal.onOpen}
                 role="button"
                 tabIndex={0}
               >
                 Entrar
               </button>
-              <button className="text-start p-4" role="button" tabIndex={0}>
+              <button
+                className="text-start p-4 text-zinc-800"
+                role="button"
+                tabIndex={0}
+              >
                 Anuncie seu espaço no Airbnb
               </button>
-              <button className="text-start p-4" role="button" tabIndex={0}>
+              <button
+                className="text-start p-4 text-zinc-800"
+                role="button"
+                tabIndex={0}
+              >
                 Ajuda
               </button>
             </div>
