@@ -110,7 +110,7 @@ const LoginModal: React.FC = () => {
         <Button
           variant="ghost"
           icon={AiFillGithub}
-          className="text-black focus:border-zinc-500 focus:ring-zinc-500"
+          className="text-zinc-800 focus:border-zinc-500 focus:ring-zinc-500"
         >
           Continuar com Github
         </Button>
