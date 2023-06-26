@@ -100,6 +100,7 @@ const LoginModal: React.FC = () => {
           variant="ghost"
           icon={FcGoogle}
           className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600 focus:border-zinc-500 focus:ring-zinc-500"
+          onClick={() => signIn("google")}
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-yellow-300 to-blue-600">
             Continuar com Google
