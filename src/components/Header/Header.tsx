@@ -9,6 +9,7 @@ import LoginModal from "./LoginModal/LoginModal";
 import Categories from "./Categories/Categories";
 
 import { SafeUser } from "@/app/types";
+import RentModal from "../RentModal/RentModal";
 
 interface HeaderProps {
   currentUser?: SafeUser | null;
@@ -29,6 +30,7 @@ const Header: FC<HeaderProps> = ({ currentUser }) => {
       <Categories />
       <RegisterModal />
       <LoginModal />
+      <RentModal />
     </header>
   );
 };

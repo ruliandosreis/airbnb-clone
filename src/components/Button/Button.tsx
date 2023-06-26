@@ -16,7 +16,7 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-rose-600 text-white hover:bg-rose-700 text-xl",
         ghost:
-          "cursor-pointer bg-transparent w-full text-rose-600 rounded-lg text-xl",
+          "cursor-pointer bg-transparent w-full text-rose-500 hover:text-rose-600 rounded-lg text-xl hover:shadow-md hover:border-b-zinc-200",
         outline:
           "bg-transparent border-2 border-zinc-800 text-zinc-800 text-xl",
       },

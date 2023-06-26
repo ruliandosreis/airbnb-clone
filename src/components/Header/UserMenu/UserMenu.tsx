@@ -1,11 +1,11 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 
-import { BiGlobe, BiMenu, BiSolidUser } from "react-icons/bi";
-import Image from "next/image";
+import { BiGlobe, BiMenu } from "react-icons/bi";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import useRentModal from "@/hooks/useRentModal";
 
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
@@ -21,17 +21,27 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
 
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
+
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+    // Open Rent Modal
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <div className="relative">
       <div className="flex items-center gap-3">
-        <a
-          href="/host/homes"
+        <button
+          role="button"
           className="hidden lg:block text-sm text-zinc-800 font-bold transition py-3 px-4 rounded full"
           tabIndex={0}
+          onClick={onRent}
         >
           Anuncie seu espaço no Airbnb
-        </a>
+        </button>
         <button className="hidden md:block" role="button">
           <BiGlobe size={"1.25rem"} title="Language Menu" />
         </button>
@@ -58,7 +68,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
               </button>
               <button
                 className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
-                onClick={() => console.log("Meu espaço")}
+                onClick={rentModal.onOpen}
                 role="button"
                 tabIndex={0}
               >
