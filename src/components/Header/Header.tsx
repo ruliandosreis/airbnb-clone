@@ -7,10 +7,10 @@ import UserMenu from "./UserMenu/UserMenu";
 import RegisterModal from "./RegisterModal/RegisterModal";
 import LoginModal from "./LoginModal/LoginModal";
 
-import { User } from "@prisma/client";
+import { SafeUser } from "@/app/types";
 
 interface HeaderProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const Header: FC<HeaderProps> = ({ currentUser }) => {
