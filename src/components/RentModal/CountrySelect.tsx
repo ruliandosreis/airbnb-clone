@@ -35,10 +35,10 @@ const CountrySelect: FC<CountrySelectProps> = ({ value, onChange }) => {
         placeholder="Selecione o país"
         options={getAll()}
         value={value}
-        onChange={() => onChange(value as CountrySelectValue)}
+        onChange={(value) => onChange(value as CountrySelectValue)}
         formatOptionLabel={(option: any) => (
           <div className="flex items-center gap-3">
-            <div>{option.flag}</div>
+            <div className="w-6">{option.flag}</div>
             <p className="font-semibold">
               {option.label}{" "}
               <span className="text-zinc-500 ml-1 font-light">
