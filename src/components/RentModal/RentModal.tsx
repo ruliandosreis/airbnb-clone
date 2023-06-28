@@ -11,6 +11,7 @@ import CountrySelect from "./CountrySelect";
 import Map from "./Map";
 import dynamic from "next/dynamic";
 import Counter from "./Counter";
+import ImageUploader from "./ImageUploader";
 
 enum STEPS {
   CATEGORY = 0,
@@ -166,6 +167,19 @@ const RentModal: FC = ({}) => {
             onChange={(value) => setCustomValue("bathroomCount", value)}
           />
         </div>
+      </div>
+    );
+  }
+
+  if (step === STEPS.IMAGES) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Adicione uma imagem do local"
+          subtitle="Mostre aos hóspedes como seu espaço se parece!"
+          hierarquy="h2"
+        />
+        <ImageUploader />
       </div>
     );
   }
