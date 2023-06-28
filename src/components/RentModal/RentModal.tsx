@@ -10,6 +10,7 @@ import CategoryInput from "./CategoryInput";
 import CountrySelect from "./CountrySelect";
 import Map from "./Map";
 import dynamic from "next/dynamic";
+import Counter from "./Counter";
 
 enum STEPS {
   CATEGORY = 0,
@@ -47,9 +48,13 @@ const RentModal: FC = ({}) => {
 
   const category = watch("category");
   const location = watch("location");
+  const guestCount = watch("guestCount");
+  const roomCount = watch("roomCount");
+  const bathroomCount = watch("bathroomCount");
 
   const Map = useMemo(
     () => dynamic(() => import("./Map"), { ssr: false }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [location]
   );
 
@@ -129,6 +134,38 @@ const RentModal: FC = ({}) => {
           onChange={(location) => setCustomValue("location", location)}
         />
         <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Adicione mais algumas informações sobre seu espaço"
+          subtitle="Mostre aos hóspedes o que seu espaço tem a oferecer!"
+          hierarquy="h2"
+        />
+        <div id="counter-section" className="flex flex-col gap-12">
+          <Counter
+            title="Hóspedes"
+            subtitle="Quantos hóspedes serão pertimidos?"
+            value={guestCount}
+            onChange={(value) => setCustomValue("guestCount", value)}
+          />
+          <Counter
+            title="Quartos"
+            subtitle="Quantos quartos possui seu espaço?"
+            value={roomCount}
+            onChange={(value) => setCustomValue("roomCount", value)}
+          />
+          <Counter
+            title="Banheiros"
+            subtitle="Quantos banheiros possui seu espaço?"
+            value={bathroomCount}
+            onChange={(value) => setCustomValue("bathroomCount", value)}
+          />
+        </div>
       </div>
     );
   }
