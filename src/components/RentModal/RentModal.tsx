@@ -8,6 +8,8 @@ import Heading from "../Heading/Heading";
 import { Category, categories } from "../Header/Categories/Categories";
 import CategoryInput from "./CategoryInput";
 import CountrySelect from "./CountrySelect";
+import Map from "./Map";
+import dynamic from "next/dynamic";
 
 enum STEPS {
   CATEGORY = 0,
@@ -45,6 +47,11 @@ const RentModal: FC = ({}) => {
 
   const category = watch("category");
   const location = watch("location");
+
+  const Map = useMemo(
+    () => dynamic(() => import("./Map"), { ssr: false }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -121,6 +128,7 @@ const RentModal: FC = ({}) => {
           value={location}
           onChange={(location) => setCustomValue("location", location)}
         />
+        <Map center={location?.latlng} />
       </div>
     );
   }
