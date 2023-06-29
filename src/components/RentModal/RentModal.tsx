@@ -3,7 +3,7 @@ import React, { FC, useState, useMemo } from "react";
 import Modal from "../Modal/Modal";
 import useRentModal from "@/hooks/useRentModal";
 import Button from "../Button/Button";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Heading from "../Heading/Heading";
 import { Category, categories } from "../Header/Categories/Categories";
 import CategoryInput from "./CategoryInput";
@@ -12,6 +12,11 @@ import Map from "./Map";
 import dynamic from "next/dynamic";
 import Counter from "./Counter";
 import ImageUploader from "./ImageUploader";
+import Input from "../Input/Input";
+import TextArea from "../TextArea/TextArea";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 enum STEPS {
   CATEGORY = 0,
@@ -25,6 +30,8 @@ enum STEPS {
 const RentModal: FC = ({}) => {
   const rentModal = useRentModal();
   const [step, setStep] = useState(STEPS.CATEGORY);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -188,6 +195,88 @@ const RentModal: FC = ({}) => {
     );
   }
 
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Como você descreveria o seu espaço?"
+          subtitle="Acrescente mais detalhes sobre ele, objetividade é um bom ponto!"
+          hierarquy="h2"
+        />
+        <Input
+          id="title"
+          label="Título"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <TextArea
+          id="description"
+          label="Descrição"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.PRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Agora, vamos definir o preço da sua reserva?"
+          subtitle="Qual o valor, em reais (BRL), da diária do seu espaço?"
+          hierarquy="h2"
+        />
+        <Input
+          id="price"
+          label="Valor"
+          type="number"
+          inputMode="numeric"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+          formatPrice
+        />
+      </div>
+    );
+  }
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (step !== STEPS.PRICE) {
+      return onNext();
+    } else {
+      setIsLoading(true);
+      axios
+        .post("/api/listings", data)
+        .then(() => {
+          toast.success("Seu espaço foi criado com sucesso!");
+          router.refresh();
+          reset();
+          setStep(STEPS.CATEGORY);
+          rentModal.onClose();
+        })
+        .catch((error) => {
+          if (axios.isAxiosError(error)) {
+            toast.error(
+              "Algo deu errado ao criar seu espaço, tente novamente!"
+            );
+          } else {
+            toast.error(
+              "Verifique as informações inseridas e tente novamente!"
+            );
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  };
+
   return (
     <Modal
       title="Seu espaço no Aribnb!"
@@ -199,7 +288,7 @@ const RentModal: FC = ({}) => {
         <Button variant="ghost" onClick={onBack}>
           {handleSecondaryButtonLabel}
         </Button>
-        <Button variant="primary" onClick={onNext}>
+        <Button variant="primary" onClick={handleSubmit(onSubmit)}>
           {handleButtonLabel}
         </Button>
       </div>
