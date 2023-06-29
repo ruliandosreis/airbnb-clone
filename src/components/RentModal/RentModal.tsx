@@ -52,6 +52,7 @@ const RentModal: FC = ({}) => {
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
   const bathroomCount = watch("bathroomCount");
+  const imageSrc = watch("imageSrc");
 
   const Map = useMemo(
     () => dynamic(() => import("./Map"), { ssr: false }),
@@ -175,11 +176,14 @@ const RentModal: FC = ({}) => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Adicione uma imagem do local"
+          title="Adicione uma foto do local"
           subtitle="Mostre aos hóspedes como seu espaço se parece!"
           hierarquy="h2"
         />
-        <ImageUploader />
+        <ImageUploader
+          value={imageSrc}
+          onChange={(value) => setCustomValue("imageSrc", value)}
+        />
       </div>
     );
   }
