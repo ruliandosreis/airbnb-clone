@@ -84,7 +84,12 @@ const ListingCard: FC<ListingCardProps> = ({
           <p className="font-light text-md text-neutral-500">{bookingDate}</p>
         )}
         <div className="flex items-center gap-1">
-          <p className="font-semibold text-base">R${price}</p>
+          <p className="font-semibold text-base">
+            R$
+            {price
+              .toString()
+              .replace(/(?:(^\d{1,3})(?=(?:\d{3})*$)|(\d{3}))(?!$)/gm, "$1$2.")}
+          </p>
           {!booking && <span className="font-light text-sm">noite</span>}
         </div>
       </div>

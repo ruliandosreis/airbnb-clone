@@ -3,6 +3,7 @@
 import React, { FC } from "react";
 import { SafeUser } from "@/app/types";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import useFavorite from "@/hooks/useFavorite";
 
 interface FavoriteButtonProps {
   listingId: string;
@@ -13,8 +14,10 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   listingId,
   currentUser,
 }) => {
-  const hasFavorite = false;
-  const toggleFavorite = () => {};
+  const { hasFavorited, toggleFavorite } = useFavorite({
+    listingId,
+    currentUser,
+  });
   return (
     <button
       onClick={toggleFavorite}
@@ -27,7 +30,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
       <AiFillHeart
         size={28}
         className={`${
-          hasFavorite ? "fill-rose-500" : "fill-neutral-500/70"
+          hasFavorited ? "fill-rose-500" : "fill-neutral-500/70"
         } absolute -top-[2px] -right-[2px] transition`}
       />
     </button>
