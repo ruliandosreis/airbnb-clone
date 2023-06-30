@@ -2,19 +2,17 @@
 import React, { FC, useCallback, useMemo } from "react";
 import useCountries from "@/hooks/useCountries";
 
-import { SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 
-import { Listing, Booking } from "@prisma/client";
+import { Booking } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 import { format } from "date-fns";
 import Image from "next/image";
-import Heading from "../Heading/Heading";
-import { BiHeart } from "react-icons/bi";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 interface ListingCardProps {
-  data: Listing;
+  data: SafeListing;
   booking?: Booking;
   disabled?: boolean;
   currentUser?: SafeUser | null;
