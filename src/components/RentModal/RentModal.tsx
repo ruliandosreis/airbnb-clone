@@ -5,7 +5,7 @@ import useRentModal from "@/hooks/useRentModal";
 import Button from "../Button/Button";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Heading from "../Heading/Heading";
-import { Category, categories } from "../Header/Categories/Categories";
+import { Category, categories } from "@/mocks/categories";
 import CategoryInput from "./CategoryInput";
 import CountrySelect from "./CountrySelect";
 import Map from "./Map";

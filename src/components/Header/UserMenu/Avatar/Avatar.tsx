@@ -4,19 +4,20 @@ import React, { FC } from "react";
 
 interface AvatarProps {
   src?: string | null | undefined;
+  size?: number;
 }
 
-const Avatar: FC<AvatarProps> = ({ src }) => {
+const Avatar: FC<AvatarProps> = ({ src, size }) => {
   return src ? (
     <Image
       src={src}
       alt="Imagem do usuário"
-      width={30}
-      height={30}
+      width={size || 30}
+      height={size || 30}
       className="rounded-full"
     />
   ) : (
-    <RxAvatar size={30} className="text-zinc-800" />
+    <RxAvatar size={size || 30} className="text-zinc-800" />
   );
 };
 

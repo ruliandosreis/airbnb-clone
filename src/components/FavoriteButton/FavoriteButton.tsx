@@ -8,11 +8,13 @@ import useFavorite from "@/hooks/useFavorite";
 interface FavoriteButtonProps {
   listingId: string;
   currentUser?: SafeUser | null;
+  size?: number;
 }
 
 const FavoriteButton: FC<FavoriteButtonProps> = ({
   listingId,
   currentUser,
+  size,
 }) => {
   const { hasFavorited, toggleFavorite } = useFavorite({
     listingId,
@@ -24,11 +26,11 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
       className="hover:opacity-80 transition cursor-pointer"
     >
       <AiOutlineHeart
-        size={28}
+        size={size || 28}
         className="fill-white absolute -top-[2px] -right-[2px] z-10"
       />
       <AiFillHeart
-        size={28}
+        size={size || 28}
         className={`${
           hasFavorited ? "fill-rose-500" : "fill-neutral-500/70"
         } absolute -top-[2px] -right-[2px] transition`}

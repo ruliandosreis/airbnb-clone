@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import Image from "next/image";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import switchCategoryLanguage from "@/utils/switchCategoryLanguage";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -69,7 +70,7 @@ const ListingCard: FC<ListingCardProps> = ({
             fill
             alt="Imagem do espaço"
             src={data.imageSrc}
-            className="object-cover w-full h-full group-hover:scale-110 transition"
+            className="object-cover w-full h-full group-hover:scale-105 transition"
           />
           <div className="absolute top-3 right-3">
             <FavoriteButton listingId={data.id} currentUser={currentUser} />
@@ -78,6 +79,7 @@ const ListingCard: FC<ListingCardProps> = ({
         <p className="font-semibold text-lg">
           {location?.region}, {location?.label}
         </p>
+        <p className="text-sm">{switchCategoryLanguage(data.category)}</p>
         {bookingDate && (
           <p className="font-light text-md text-neutral-500">{bookingDate}</p>
         )}

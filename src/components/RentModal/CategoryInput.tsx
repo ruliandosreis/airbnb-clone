@@ -1,6 +1,6 @@
 "use client";
+import { Category } from "@/mocks/categories";
 import React, { FC } from "react";
-import { Category } from "../Header/Categories/Categories";
 
 interface CategoryInputProps extends Category {
   onClick: (value: string) => void;
