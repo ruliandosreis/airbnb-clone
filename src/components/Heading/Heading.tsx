@@ -5,12 +5,12 @@ interface HeadingProps {
   title: string;
   subtitle?: string;
   center?: boolean;
-  hierarquy?: "h1" | "h2" | "h3" | "h4";
+  hierarchy?: "h1" | "h2" | "h3" | "h4";
 }
 
-const Heading: FC<HeadingProps> = ({ title, subtitle, center, hierarquy }) => {
-  const returnHeading = (hierarquy: string) => {
-    switch (hierarquy) {
+const Heading: FC<HeadingProps> = ({ title, subtitle, center, hierarchy }) => {
+  const returnHeading = (hierarchy: string) => {
+    switch (hierarchy) {
       case "h1":
         return (
           <h1
@@ -55,7 +55,7 @@ const Heading: FC<HeadingProps> = ({ title, subtitle, center, hierarquy }) => {
   };
   return (
     <div className="flex flex-col gap-2">
-      {returnHeading(hierarquy ? hierarquy : "h1")}
+      {returnHeading(hierarchy ? hierarchy : "h1")}
       {subtitle && (
         <p
           className={`font-light text-neutral-500 ${

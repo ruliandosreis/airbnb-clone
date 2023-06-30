@@ -51,7 +51,11 @@ const CategoryBox: FC<Category> = ({
       onClick={handleClick}
     >
       <Icon size={26} />
-      <p className={`text-sm ${selected ? "font-semibold" : "font-medium"}`}>
+      <p
+        className={`text-sm ${
+          selected ? "font-semibold" : "font-medium"
+        } text-center`}
+      >
         {label}
       </p>
     </div>

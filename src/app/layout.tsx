@@ -24,7 +24,7 @@ export default async function RootLayout({
       <body className={nunito.className}>
         <ToasterProvider />
         <Header currentUser={currentUser} />
-        {children}
+        <div className="pb-20 pt-48">{children}</div>
       </body>
     </html>
   );

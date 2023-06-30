@@ -64,7 +64,7 @@ const LoginModal: React.FC = () => {
       <div className="flex flex-col gap-4">
         <Heading
           title={"Que bom te ver de novo!"}
-          hierarquy="h3"
+          hierarchy="h3"
           subtitle="Entre na sua conta informando suas credenciais nos campos abaixo."
         />
         <form

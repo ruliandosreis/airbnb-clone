@@ -64,7 +64,7 @@ const RegisterModal: React.FC = () => {
       onClose={registerModal.onClose}
     >
       <div className="flex flex-col gap-4">
-        <Heading title={"Bem vindo ao Airbnb"} hierarquy="h3" />
+        <Heading title={"Bem vindo ao Airbnb"} hierarchy="h3" />
         <form
           onSubmit={handleSubmit(onSubmit)}
           onSubmitCapture={(e) => e.preventDefault()}

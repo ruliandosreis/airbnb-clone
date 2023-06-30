@@ -110,7 +110,7 @@ const RentModal: FC = ({}) => {
       <Heading
         title="Qual destes descreve melhor o seu espaço?"
         subtitle="Escolha uma categoria"
-        hierarquy="h2"
+        hierarchy="h2"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {categories.map((item: Category, index: number) => (
@@ -135,7 +135,7 @@ const RentModal: FC = ({}) => {
       <div className="flex flex-col gap-8 z-50 overflow-visible">
         <Heading
           title="Onde seu espaço está localizado?"
-          hierarquy="h2"
+          hierarchy="h2"
           subtitle="Ajudaremos os hóspedes a encontrarem seu espaço"
         />
         <CountrySelect
@@ -153,7 +153,7 @@ const RentModal: FC = ({}) => {
         <Heading
           title="Adicione mais algumas informações sobre seu espaço"
           subtitle="Mostre aos hóspedes o que seu espaço tem a oferecer!"
-          hierarquy="h2"
+          hierarchy="h2"
         />
         <div id="counter-section" className="flex flex-col gap-12">
           <Counter
@@ -185,7 +185,7 @@ const RentModal: FC = ({}) => {
         <Heading
           title="Adicione uma foto do local"
           subtitle="Mostre aos hóspedes como seu espaço se parece!"
-          hierarquy="h2"
+          hierarchy="h2"
         />
         <ImageUploader
           value={imageSrc}
@@ -201,7 +201,7 @@ const RentModal: FC = ({}) => {
         <Heading
           title="Como você descreveria o seu espaço?"
           subtitle="Acrescente mais detalhes sobre ele, objetividade é um bom ponto!"
-          hierarquy="h2"
+          hierarchy="h2"
         />
         <Input
           id="title"
@@ -229,7 +229,7 @@ const RentModal: FC = ({}) => {
         <Heading
           title="Agora, vamos definir o preço da sua reserva?"
           subtitle="Qual o valor, em reais (BRL), da diária do seu espaço?"
-          hierarquy="h2"
+          hierarchy="h2"
         />
         <Input
           id="price"
