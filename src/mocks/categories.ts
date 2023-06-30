@@ -27,7 +27,7 @@ export const categories: Array<Category> = [
     icon: FaUmbrellaBeach,
     value: "beach",
     label: "Em frente à praia",
-    description: "Essa propriedade está localizada próxima à praia!",
+    description: "Aproveite tudo que o litoral tem a oferecer!",
   },
   {
     icon: GiCampingTent,
@@ -39,25 +39,25 @@ export const categories: Array<Category> = [
     icon: MdOutlineFestival,
     value: "festival",
     label: "Festivais",
-    description: "Curta shows ao vivo e festivais de música em todo o mundo.",
+    description: "Curta shows ao vivo e festivais de música!",
   },
   {
     icon: GiIsland,
     value: "islands",
     label: "Ilhas",
-    description: "Visite as ilhas mais bem avaliadas do mundo!",
+    description: "Aventura e diversão em uma ilha paradisíaca!",
   },
   {
     icon: FaFire,
     value: "popular",
     label: "Em alta",
-    description: "Confira as propriedades mais procuradas!",
+    description: "Essa propriedade está muito popular no momento!",
   },
   {
     icon: FaRegSnowflake,
     value: "artic",
     label: "Ártico",
-    description: "Procurando fugir do calor? As melhores opções estão aqui!",
+    description: "Procurando fugir do calor? Escolheu o lugar certo!",
   },
   {
     icon: GiCactus,
@@ -81,8 +81,7 @@ export const categories: Array<Category> = [
     icon: GiCoffeeCup,
     value: "inn",
     label: "Pousadas",
-    description:
-      "Conforto e aconchego, os melhores lugares para você repousar.",
+    description: "Conforto e aconchego, o melhor lugar para você repousar.",
   },
   {
     icon: TbDisabled,
@@ -100,7 +99,7 @@ export const categories: Array<Category> = [
     icon: GiBoatFishing,
     value: "lake",
     label: "Lagos",
-    description: "Propriedades próximas à lagos.",
+    description: "Aproveite a vista de um lindo lago!",
   },
   {
     icon: GiCaveEntrance,
@@ -113,6 +112,6 @@ export const categories: Array<Category> = [
     value: "lux",
     label: "Luxuoso",
     description:
-      "Acomodações sofisticadas e luxuosas para uma estadia excepcional.",
+      "Acomodação sofisticada e luxuosa para uma experiência excepcional.",
   },
 ];

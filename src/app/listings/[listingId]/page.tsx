@@ -1,3 +1,4 @@
+import getBookings from "@/app/actions/getBookings";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
 import Container from "@/components/Container/Container";
@@ -11,12 +12,17 @@ interface IParams {
 const ListingPage = async ({ params }: { params: IParams }) => {
   const listing = await getListingById(params);
   const currentUser = await getCurrentUser();
+  const bookings = await getBookings(params);
 
   if (!listing) return <EmptyState />;
 
   return (
     <Container>
-      <ListingDetails listing={listing} currentUser={currentUser} />
+      <ListingDetails
+        listing={listing}
+        currentUser={currentUser}
+        bookings={bookings}
+      />
     </Container>
   );
 };

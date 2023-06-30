@@ -8,6 +8,7 @@ import { VscCircleSmallFilled } from "react-icons/vsc";
 import ListingCategory from "./ListingCategory/ListingCategory";
 import dynamic from "next/dynamic";
 import Heading from "@/components/Heading/Heading";
+import ListingBooking from "../ListingBooking/ListingBooking";
 
 const Map = dynamic(() => import("@/components/RentModal/Map"), { ssr: false });
 
@@ -19,6 +20,7 @@ interface ListingInfoProps {
   roomCount: number;
   bathroomCount: number;
   locationValue: string;
+  price: number;
 }
 
 const ListingInfo: FC<ListingInfoProps> = ({
@@ -29,17 +31,18 @@ const ListingInfo: FC<ListingInfoProps> = ({
   roomCount,
   bathroomCount,
   locationValue,
+  price,
 }) => {
   const { getByValue } = useCountries();
 
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
-    <section className="flex flex-col gap-8">
+    <section className="flex flex-col gap-8 ">
       <div className="flex justify-between w-full items-center gap-2">
         <div className="flex flex-col">
           <h3 className="text-xl font-semibold">Hospedado por {user?.name}</h3>
-          <div className="flex flex-wrap gap-2 items-center">
+          <div className="flex flex-wrap gap-x-2 items-center">
             <span className="text-lg font-light text-neutral-700">
               {`${
                 guestCount > 1
@@ -79,7 +82,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
         subtitle="Localização exata após a reserva"
         hierarchy="h3"
       />
-      <Map center={coordinates} />
+      {/* z<Map center={coordinates} /> */}
     </section>
   );
 };
