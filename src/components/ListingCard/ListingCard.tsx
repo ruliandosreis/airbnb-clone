@@ -2,19 +2,23 @@
 import React, { FC, useCallback, useMemo } from "react";
 import useCountries from "@/hooks/useCountries";
 
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeBooking, SafeListing, SafeUser } from "@/app/types";
 
-import { Booking } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 import { format } from "date-fns";
 import Image from "next/image";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import switchCategoryLanguage from "@/utils/switchCategoryLanguage";
+import Button from "../Button/Button";
+import { BiSolidTrash } from "react-icons/bi";
 
 interface ListingCardProps {
   data: SafeListing;
-  booking?: Booking;
+  booking?: SafeBooking;
+  onAction?: (id: string) => void;
+  actionLabel?: string;
+  actionId?: string;
   disabled?: boolean;
   currentUser?: SafeUser | null;
 }
@@ -22,6 +26,9 @@ interface ListingCardProps {
 const ListingCard: FC<ListingCardProps> = ({
   data,
   booking,
+  onAction,
+  actionLabel,
+  actionId = "",
   disabled,
   currentUser,
 }) => {
@@ -35,8 +42,10 @@ const ListingCard: FC<ListingCardProps> = ({
       e.stopPropagation();
 
       if (disabled) return;
+
+      onAction?.(actionId);
     },
-    [disabled]
+    [disabled, onAction, actionId]
   );
 
   const price = useMemo(() => {
@@ -55,9 +64,13 @@ const ListingCard: FC<ListingCardProps> = ({
     const endDate = new Date(booking.endDate);
 
     return `${
-      format(startDate, "dd/MMM/yyyy") + " - " + format(endDate, "dd/MM/yyyy")
+      format(startDate, "d, LLL, uuuu") +
+      " - " +
+      format(endDate, "d, LLL, uuuu")
     }`;
   }, [booking]);
+
+  console.log(bookingDate);
 
   return (
     <div
@@ -79,9 +92,10 @@ const ListingCard: FC<ListingCardProps> = ({
         <p className="font-semibold text-lg">
           {location?.region}, {location?.label}
         </p>
-        <p className="text-sm">{switchCategoryLanguage(data.category)}</p>
-        {bookingDate && (
+        {bookingDate ? (
           <p className="font-light text-md text-neutral-500">{bookingDate}</p>
+        ) : (
+          <p className="text-sm">{switchCategoryLanguage(data.category)}</p>
         )}
         <div className="flex items-center gap-1">
           <p className="font-semibold text-base">
@@ -92,6 +106,17 @@ const ListingCard: FC<ListingCardProps> = ({
           </p>
           {!booking && <span className="font-light text-sm">noite</span>}
         </div>
+        {onAction && actionLabel && (
+          <Button
+            variant="primary"
+            className="py-2 text-xs"
+            disabled={disabled}
+            onClick={handleCancel}
+          >
+            <BiSolidTrash size={16} className="mr-4" />
+            {actionLabel}
+          </Button>
+        )}
       </div>
     </div>
   );

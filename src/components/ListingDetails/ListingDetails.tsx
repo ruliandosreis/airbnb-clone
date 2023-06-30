@@ -73,7 +73,7 @@ const ListingDetails: FC<ListingDetailsProps> = ({
         toast.success("Reserva criada com sucesso!");
         setDateRange(initialDateRange);
         // redirect to trips page
-        router.refresh();
+        router.push("/trips");
       })
       .catch((error) => {
         if (axios.isAxiosError(error)) {

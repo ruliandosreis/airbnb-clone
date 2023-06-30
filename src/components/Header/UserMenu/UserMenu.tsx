@@ -10,6 +10,7 @@ import useRentModal from "@/hooks/useRentModal";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import Avatar from "./Avatar/Avatar";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -18,6 +19,7 @@ interface UserMenuProps {
 const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggleMenu: () => void = () => setIsOpen(!isOpen);
+  const router = useRouter();
 
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
@@ -60,7 +62,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
             <div className="flex flex-col">
               <button
                 className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
-                onClick={() => console.log("Minhas Viagens")}
+                onClick={() => router.push("/trips")}
                 role="button"
                 tabIndex={0}
               >
