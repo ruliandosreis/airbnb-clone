@@ -19,6 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This project was developed using the newest features using the following tecnologies:
 
 - React.js (Next.js)
+- TypeScript
 - Tailwind CSS
 - Prisma
 - MongoDB
@@ -31,3 +32,5 @@ The idea is a [Airbnb](https://www.airbnb.com.br/) clone, a service that lets pr
 The authentication, listing, booking and other features are all linked with a database created in MongoDB, allied with prisma for the communication and schema creation.
 
 Some features such as testing, documentation, performance checks and accessibility were not taken into account, as this is a project inspired by another, but they are important resources in the development of a website and definitely valued by me.
+
+![airbnb-clone-main-image](https://github.com/ruliandosreis/airbnb-clone/assets/73958651/c502ddd4-3bc0-4b07-a6b6-815379d0a902)
