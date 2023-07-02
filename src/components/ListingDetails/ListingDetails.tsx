@@ -57,7 +57,7 @@ const ListingDetails: FC<ListingDetailsProps> = ({
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
-  const onCreateReservation = useCallback(() => {
+  const onCreateBooking = useCallback(() => {
     if (!currentUser) return loginModal.onOpen();
 
     setIsLoading(true);
@@ -124,7 +124,7 @@ const ListingDetails: FC<ListingDetailsProps> = ({
             totalPrice={totalPrice}
             onChangeDate={(value) => setDateRange(value)}
             dateRange={dateRange}
-            onSubmit={onCreateReservation}
+            onSubmit={onCreateBooking}
             disabled={isLoading}
             disabledDates={disabledDates}
           />

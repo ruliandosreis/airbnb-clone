@@ -70,8 +70,6 @@ const ListingCard: FC<ListingCardProps> = ({
     }`;
   }, [booking]);
 
-  console.log(bookingDate);
-
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}

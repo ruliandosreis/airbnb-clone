@@ -16,7 +16,7 @@ const TripsDetails: FC<TripsDetailsProps> = ({ bookings, currentUser }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState<string>("");
 
-  const onCancel = useCallback(
+  const onCancelBooking = useCallback(
     (id: string) => {
       setDeletingId(id);
       axios
@@ -45,10 +45,11 @@ const TripsDetails: FC<TripsDetailsProps> = ({ bookings, currentUser }) => {
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {bookings?.map((booking: SafeBooking) => (
           <ListingCard
+            key={booking.id}
             booking={booking}
             data={booking.listing}
-            key={booking.id}
-            onAction={onCancel}
+            onAction={onCancelBooking}
+            actionId={booking.id}
             actionLabel="Cancelar reserva"
           />
         ))}
