@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { FC, useCallback } from "react";
 
 import qs from "query-string";
-import { Category } from "../Categories";
+import { Category } from "@/mocks/categories";
 
 const CategoryBox: FC<Category> = ({
   icon: Icon,
