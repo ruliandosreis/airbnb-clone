@@ -37,6 +37,8 @@ const ListingHead: FC<ListingHeadProps> = ({
           src={imageSrc}
           fill
           className="object-cover w-full"
+          loading="eager"
+          priority
         />
         <div className="absolute top-5 right-5">
           <FavoriteButton listingId={id} currentUser={currentUser} size={36} />

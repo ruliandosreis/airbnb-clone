@@ -7,7 +7,7 @@ const Logo: FC = ({}) => {
   const router = useRouter();
   return (
     <Image
-      className="hidden md:block cursor-pointer"
+      className="block cursor-pointer"
       alt="Airbnb Logo"
       height={100}
       width={100}

@@ -48,11 +48,15 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
           <BiGlobe size={"1.25rem"} title="Language Menu" />
         </button>
         <button
-          className="rounded-full p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-3 shadow-md"
+          className="rounded-full p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-0 md:gap-3 shadow-md"
           onClick={toggleMenu}
           role="button"
         >
-          <BiMenu size={"1.25rem"} title="User Menu" />
+          <BiMenu
+            size={"1.25rem"}
+            title="User Menu"
+            className="hidden md:block"
+          />
           <Avatar src={currentUser?.image} />
         </button>
       </div>
@@ -77,20 +81,13 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Meu espaço
               </button>
               <button
-                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
-                onClick={() => console.log("Reservas")}
+                className="md:hidden text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100 flex gap-2"
+                onClick={rentModal.onOpen}
                 role="button"
                 tabIndex={0}
               >
-                Reservas
-              </button>
-              <button
-                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
-                onClick={() => console.log("Favoritos")}
-                role="button"
-                tabIndex={0}
-              >
-                Favoritos
+                <BiGlobe size={"1.25rem"} title="Language Menu" />
+                PT-BR
               </button>
               <button
                 className="text-start p-4 font-bold text-rose-600 border-t-[1px] hover:bg-rose-100"

@@ -82,7 +82,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
         subtitle="Localização exata após a reserva"
         hierarchy="h3"
       />
-      {/* z<Map center={coordinates} /> */}
+      <Map center={coordinates} />
     </section>
   );
 };

@@ -1,3 +1,4 @@
+"use client";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -29,6 +30,12 @@ const Modal: FC<ModalProps> = ({
   useEffect(() => {
     setShowHideModal(isOpen);
   }, [isOpen]);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      handleClose();
+    }
+  });
 
   return (
     isOpen && (
