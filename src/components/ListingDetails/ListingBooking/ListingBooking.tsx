@@ -6,6 +6,9 @@ import React, { FC, useState } from "react";
 import Button from "@/components/Button/Button";
 import Container from "@/components/Container/Container";
 import Modal from "@/components/Modal/Modal";
+import useLoginModal from "@/hooks/useLoginModal";
+import { toast } from "react-hot-toast";
+import { SafeUser } from "@/app/types";
 
 interface ListingBookingProps {
   price: number;
@@ -15,6 +18,7 @@ interface ListingBookingProps {
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: Date[];
+  currentUser?: SafeUser | null;
 }
 
 const ListingBooking: FC<ListingBookingProps> = ({
@@ -25,8 +29,10 @@ const ListingBooking: FC<ListingBookingProps> = ({
   onSubmit,
   disabled,
   disabledDates,
+  currentUser,
 }) => {
   const [bookingModal, setBookingModal] = useState(false);
+  const loginModal = useLoginModal();
   return (
     <>
       <div className="hidden md:flex p-6 w-[330px] border-[1px] shadow-lg rounded-xl flex-col gap-2">
@@ -85,7 +91,7 @@ const ListingBooking: FC<ListingBookingProps> = ({
               variant="primary"
               disabled={disabled}
               onClick={onSubmit}
-              className="text-xs py-2 px-4 max-w-[30vw]"
+              className="max-w-[30vw] py-2"
             >
               Reservar
             </Button>
@@ -103,7 +109,18 @@ const ListingBooking: FC<ListingBookingProps> = ({
           disabledDates={disabledDates}
         />
         <hr />
-        <Button variant="primary" disabled={disabled} onClick={onSubmit}>
+        <Button
+          variant="primary"
+          disabled={disabled}
+          onClick={
+            currentUser
+              ? onSubmit
+              : () => {
+                  setBookingModal(false);
+                  toast.error("Você precisa estar logado para reservar");
+                }
+          }
+        >
           Reservar
         </Button>
       </Modal>
