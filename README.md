@@ -22,6 +22,7 @@ This project was developed using the newest features using the following tecnolo
 - Tailwind CSS
 - Prisma
 - MongoDB
+- Cloudinary
 
 ## The Project Itself
 
