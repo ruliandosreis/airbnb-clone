@@ -43,6 +43,6 @@ The authentication, listing, booking and other features are all linked with a da
 
 Some features such as testing, documentation, performance checks and accessibility were not taken into account, as this is a project inspired by another, but they are important resources in the development of a website and definitely valued by me.
 
-![airbnb-clone-main-image](https://github.com/ruliandosreis/airbnb-clone/assets/73958651/c502ddd4-3bc0-4b07-a6b6-815379d0a902)
+![airbnb-clone-main-image](https://github.com/ruliandosreis/airbnb-clone/assets/73958651/5c29e00a-f1d6-4dd0-aa51-24ae616d7fd2)
 
 Thank you for the time and appreciation! :grin:
