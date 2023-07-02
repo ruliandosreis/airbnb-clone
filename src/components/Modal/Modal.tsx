@@ -31,14 +31,6 @@ const Modal: FC<ModalProps> = ({
     setShowHideModal(isOpen);
   }, [isOpen]);
 
-  const modal = document.getElementById("modal-container");
-
-  modal?.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      handleClose();
-    }
-  });
-
   return (
     isOpen && (
       <div
