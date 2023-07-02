@@ -11,8 +11,18 @@ yarn dev
 # or
 pnpm dev
 ```
+You'll also need a .env file to configure the keys used in the project. They are:
+```
+DATABASE_URL
+NEXTAUTH_SECRET
+GITHUB_ID
+GITHUB_SECRET
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Technologies
 
@@ -34,3 +44,5 @@ The authentication, listing, booking and other features are all linked with a da
 Some features such as testing, documentation, performance checks and accessibility were not taken into account, as this is a project inspired by another, but they are important resources in the development of a website and definitely valued by me.
 
 ![airbnb-clone-main-image](https://github.com/ruliandosreis/airbnb-clone/assets/73958651/c502ddd4-3bc0-4b07-a6b6-815379d0a902)
+
+Thank you for the time and appreciation! :grin:
