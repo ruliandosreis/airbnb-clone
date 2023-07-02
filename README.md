@@ -14,21 +14,19 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project was developed using the newest features using the following tecnologies:
 
-## Learn More
+- React.js (Next.js)
+- Tailwind CSS
+- Prisma
+- MongoDB
 
-To learn more about Next.js, take a look at the following resources:
+## The Project Itself
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The idea is a [Airbnb](https://www.airbnb.com.br/) clone, a service that lets property owners rent out their spaces to travelers looking for a place to stay, with some changes of my own.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The authentication, listing, booking and other features are all linked with a database created in MongoDB, allied with prisma for the communication and schema creation.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Some features such as testing, documentation, performance checks and accessibility were not taken into account, as this is a project inspired by another, but they are important resources in the development of a website and definitely valued by me.
