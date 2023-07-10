@@ -2,7 +2,7 @@ import getBookings from "@/app/actions/getBookings";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
 import Container from "@/components/Container/Container";
-import EmptyState from "@/components/EmptyState.tsx/EmptyState";
+import EmptyState from "@/components/EmptyState/EmptyState";
 import ListingDetails from "@/components/ListingDetails/ListingDetails";
 
 interface IParams {

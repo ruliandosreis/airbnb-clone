@@ -1,4 +1,4 @@
-import EmptyState from "@/components/EmptyState.tsx/EmptyState";
+import EmptyState from "@/components/EmptyState/EmptyState";
 import getCurrentUser from "../actions/getCurrentUser";
 import getBookings from "../actions/getBookings";
 import Container from "@/components/Container/Container";

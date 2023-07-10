@@ -70,15 +70,23 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 role="button"
                 tabIndex={0}
               >
-                Minhas Viagens
+                Minhas viagens
               </button>
               <button
                 className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
+                onClick={() => router.push("/bookings")}
+                role="button"
+                tabIndex={0}
+              >
+                Meus espaços
+              </button>
+              <button
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100 lg:hidden"
                 onClick={rentModal.onOpen}
                 role="button"
                 tabIndex={0}
               >
-                Meu espaço
+                Anuncie seu espaço
               </button>
               <button
                 className="md:hidden text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100 flex gap-2"

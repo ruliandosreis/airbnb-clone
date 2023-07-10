@@ -1,5 +1,5 @@
 import Container from "@/components/Container/Container";
-import EmptyState from "@/components/EmptyState.tsx/EmptyState";
+import EmptyState from "@/components/EmptyState/EmptyState";
 import getListings from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 import ListingCard from "@/components/ListingCard/ListingCard";

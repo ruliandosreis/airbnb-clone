@@ -15,8 +15,10 @@ import { toast } from "react-hot-toast";
 
 import { signIn } from "next-auth/react";
 import useLoginModal from "@/hooks/useLoginModal";
+import { useRouter } from "next/navigation";
 
 const RegisterModal: React.FC = () => {
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,6 +42,8 @@ const RegisterModal: React.FC = () => {
       .post("/api/register", data)
       .then(() => {
         registerModal.onClose();
+        toast.success("Conta criada com sucesso!");
+        loginModal.onOpen();
       })
       .catch((error) => {
         if (axios.isAxiosError(error)) {
