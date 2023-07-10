@@ -2,7 +2,6 @@ import EmptyState from "@/components/EmptyState/EmptyState";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getBookings from "@/app/actions/getBookings";
-import TripsDetails from "@/components/TripsDetails/TripsDetails";
 import BookingsClient from "@/components/BookingsClient/BookingsClient";
 import Container from "@/components/Container/Container";
 

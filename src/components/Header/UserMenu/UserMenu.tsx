@@ -81,6 +81,14 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }) => {
                 Meus espaços
               </button>
               <button
+                className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100"
+                onClick={() => router.push("/favorites")}
+                role="button"
+                tabIndex={0}
+              >
+                Favoritos
+              </button>
+              <button
                 className="text-start p-4 font-bold text-zinc-800 hover:bg-zinc-100 lg:hidden"
                 onClick={rentModal.onOpen}
                 role="button"
