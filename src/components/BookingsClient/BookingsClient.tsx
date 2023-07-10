@@ -39,8 +39,8 @@ const BookingsClient: FC<BookingsClientProps> = ({ bookings, currentUser }) => {
   return (
     <div>
       <Heading
-        title="Suas propriedades"
-        subtitle="Veja as reservas dos clientes nos seus espaços"
+        title="Seus hóspedes"
+        subtitle="Acompanhe as reservas dos hóspedes nos seus espaços"
       />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {bookings?.map((booking: SafeBooking, index: number) => (
